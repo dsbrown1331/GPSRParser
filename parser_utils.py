@@ -348,36 +348,35 @@ def parse_semantics_file(semantics_file):
    
 
 if __name__=="__main__":
-    objects_xml_file = '/home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/CommonFiles/Objects.xml'
-    locations_xml_file = '/home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/CommonFiles/Locations.xml'
-    names_xml_file = '/home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/CommonFiles/Names.xml'
+    from yaml import load
+    import parse_tree as pt
 
+    yaml_config_file = "/home/daniel/Code/GPSRsandbox/parser_config.yaml"    
     
-
-    #grammar_location = '/home/daniel/Code/GPSRCmdGen/EEGPSRCmdGen/Resources/'
-    grammar_location = '/home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/GPSRCmdGen/Resources/'
-    #grammar_location = './'
-    #grammar_files = ['eegpsr_cat2.txt']
-    grammar_files = ['Category1Grammar.txt','CommonRules.txt']
-    #grammar_files = ['TestGrammar.txt']
-    #grammar_file = 'Category1Grammar_test.txt'
-    #grammar_file = 'CommonRules.txt'
-    artificial_terminals = ['$whattosay']
+    with open(yaml_config_file) as f:
+        configs = load(f)
+    grammar_files = configs['grammar_files']
+    grammar_location = configs['grammar_location']
+    objects_xml_file = configs['objects_xml_file']
+    locations_xml_file = configs['locations_xml_file']
+    names_xml_file = configs['names_xml_file']
+    semantics_file = configs['semantics_file']
+    artificial_terminals = configs['artificial_terminals']
     
     
     #now start with a certain token and build out all the possibilities
     #production_rules = parse_productions_and_xml(grammar_files, grammar_location, objects_xml_file, locations_xml_file, names_xml_file)
     production_rules_highlevel = parse_production_rules(grammar_files, grammar_location)
-    print_all_highlevel_sentences("$fndppl", production_rules_highlevel, artificial_terminals)
+    print_all_highlevel_sentences("$fndobj", production_rules_highlevel, artificial_terminals)
     
-    print("---------")
-    sentence = "$vbfind a person in the {room} and $vbspeak $whattosay"
-    print(" expansions for ", sentence)
-    print("----------")
-    all_expansions = []
-    recursively_fill_necessary(sentence, production_rules_highlevel, artificial_terminals, all_expansions)
-    for s in all_expansions:
-        print(s)
+#    print("---------")
+#    sentence = "$vbfind a person in the {room} and $vbspeak $whattosay"
+#    print(" expansions for ", sentence)
+#    print("----------")
+#    all_expansions = []
+#    recursively_fill_necessary(sentence, production_rules_highlevel, artificial_terminals, all_expansions)
+#    for s in all_expansions:
+#        print(s)
         
     #TODO add to tree
 #    production_rules = parse_productions_and_xml(grammar_files, grammar_location, objects_xml_file, locations_xml_file, names_xml_file)
