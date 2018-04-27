@@ -351,7 +351,7 @@ if __name__=="__main__":
     from yaml import load
     import parse_tree as pt
 
-    yaml_config_file = "/home/daniel/Code/GPSRsandbox/parser_config.yaml"    
+    yaml_config_file = "./parser_config.yaml"    
     
     with open(yaml_config_file) as f:
         configs = load(f)

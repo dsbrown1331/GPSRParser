@@ -9,16 +9,16 @@ import sys
 from yaml import load
 import parse_tree as pt
 
-yaml_config_file = "/home/daniel/Code/GPSRsandbox/parser_config.yaml"
+yaml_config_file = "/home/dsbrown/Code/AustinVillaatHome/GPSRParser/parser_config.yaml"
 
 ##testing yaml
 #data = load(file(yaml_config_file, 'r'))
 #print(data)
 
 parser = pt.build_parser(yaml_config_file)
-#utterance = sys.argv[1]
+utterance = sys.argv[1]
 #utterance = "look for a person in the bathroom and tell something about yourself"
-utterance = "look for the tea spoon in the bedroom"
+#utterance = "look for the tea spoon in the bedroom"
 print("input: " + utterance)
 parsed_utterance = parser.parse_utterance(utterance)
 if parsed_utterance is None:

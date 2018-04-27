@@ -138,7 +138,7 @@ class ParseTree():
         return None
         
     def matches_literal(self, value, utterance):
-        if utterance[:len(value)] == value:
+        if utterance[:len(value)].lower() == value.lower():
             return True, value
         else:
             return False, ""
@@ -213,21 +213,20 @@ def build_parser(yaml_config_file):
         
         
 if __name__=="__main__":
-    objects_xml_file = '/home/daniel/Code/GPSRCmdGen/CommonFiles/Objects.xml'
-    locations_xml_file = '/home/daniel/Code/GPSRCmdGen/CommonFiles/Locations.xml'
-    names_xml_file = '/home/daniel/Code/GPSRCmdGen/CommonFiles/Names.xml'
+    from yaml import load
+    import parse_tree as pt
 
+    yaml_config_file = "./parser_config.yaml"    
     
-
-    #grammar_location = '/home/daniel/Code/GPSRCmdGen/EEGPSRCmdGen/Resources/'
-    grammar_location = '/home/daniel/Code/GPSRCmdGen/GPSRCmdGen/Resources/'
-    #grammar_location = './'
-    #grammar_files = ['eegpsr_cat2.txt']
-    grammar_files = ['Category1Grammar.txt','CommonRules.txt']    
-    
-    semantics_file = './semantics.csv'
-    
-    artificial_terminals = ['$whattosay']
+    with open(yaml_config_file) as f:
+        configs = load(f)
+    grammar_files = configs['grammar_files']
+    grammar_location = configs['grammar_location']
+    objects_xml_file = configs['objects_xml_file']
+    locations_xml_file = configs['locations_xml_file']
+    names_xml_file = configs['names_xml_file']
+    semantics_file = configs['semantics_file']
+    artificial_terminals = configs['artificial_terminals']
     
     #now start with a certain token and build out all the possibilities
     #get highlevel rules

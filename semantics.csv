@@ -16,5 +16,5 @@ Tell me the name of the person in the {room} : tellme_person_name(location), loc
 answer a {question} to {name} at the {beacon 1} : find_named_person_answer_question(location, name), location={beacon 1}, name={name}
 
 $vbfind the {kobject?} in the {room}: find_object(object, location), object={kobject?}, room={room}
-$vbfind the {kobject} in the {room}: find_object(object, location), object={kobject?}, room={room}
+$vbfind the {kobject} in the {room}: find_object(object, location), object={kobject}, room={room}
 Tell me how many {kobject} there are on the {placement}: count_object(object, location), object={kobject}, location={placement}
