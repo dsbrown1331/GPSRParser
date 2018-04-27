@@ -17,7 +17,8 @@ yaml_config_file = "/home/daniel/Code/GPSRsandbox/parser_config.yaml"
 
 parser = pt.build_parser(yaml_config_file)
 #utterance = sys.argv[1]
-utterance = "look for a person in the bathroom and tell something about yourself"
+#utterance = "look for a person in the bathroom and tell something about yourself"
+utterance = "look for the tea spoon in the bedroom"
 print("input: " + utterance)
 parsed_utterance = parser.parse_utterance(utterance)
 if parsed_utterance is None:
