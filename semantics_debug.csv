@@ -1,0 +1,1 @@
+$vbgopl to the {placement 1}, $vbfind the {kobject}, and $vbdeliver it to {name} at the {beacon} : deliver_to_person_from_location(object, location, name, destination); object = {kobject}, location={placement 1}, name={name}, destination={beacon} 

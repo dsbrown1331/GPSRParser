@@ -16,9 +16,10 @@ yaml_config_file = "/home/dsbrown/Code/AustinVillaatHome/GPSRParser/parser_confi
 #print(data)
 
 parser = pt.build_parser(yaml_config_file)
-utterance = sys.argv[1]
-#utterance = "look for a person in the bathroom and tell something about yourself"
-#utterance = "look for the tea spoon in the bedroom"
+#utterance = sys.argv[1]
+#utterance = 'Bring me the banana'
+#utterance = "Bring the banana from the bathroom to the center table"
+utterance = "give me the pasta"
 print("input: " + utterance)
 parsed_utterance = parser.parse_utterance(utterance)
 if parsed_utterance is None:

@@ -2,6 +2,7 @@ objects_xml_file: /home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/CommonFiles/Ob
 locations_xml_file: /home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/CommonFiles/Locations.xml
 names_xml_file: /home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/CommonFiles/Names.xml
 grammar_location: /home/dsbrown/Code/AustinVillaatHome/GPSRCmdGen/GPSRCmdGen/Resources/
-grammar_files: [Category1Grammar.txt, CommonRules.txt]    
+grammar_files: [CommonRules.txt, Category2Grammar.txt]    
 semantics_file: ./semantics.csv
+confirmations_file: ./confirmations.csv
 artificial_terminals: [$whattosay]

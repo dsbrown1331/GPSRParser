@@ -207,6 +207,30 @@ def parse_production_rules(grammar_file_list, grammar_location):
                         production_rules[lhs].extend(rhs_productions)
     return production_rules
     
+    
+def parse_kobjects(objects_xml_file):
+    all_objects = []
+    tree = ET.parse(objects_xml_file)
+    root = tree.getroot()
+    for cat in root.findall("./category"):
+        for obj in cat:
+            if 'type' in obj.attrib:
+                if obj.attrib['type'] == "known":
+                    all_objects.append(obj.attrib['name'])
+    return all_objects
+    
+
+def parse_aobjects(objects_xml_file):
+    all_objects = []
+    tree = ET.parse(objects_xml_file)
+    root = tree.getroot()
+    for cat in root.findall("./category"):
+        for obj in cat:
+            if 'type' in obj.attrib:
+                if obj.attrib['type'] == "alike":
+                    all_objects.append(obj.attrib['name'])
+    return all_objects
+    
 def parse_objects(objects_xml_file):
     all_objects = []
     tree = ET.parse(objects_xml_file)
@@ -284,10 +308,15 @@ def generate_all_sentences_with_terminals(start_symbol, production_rules):
 def parse_productions_and_xml(grammar_files, grammar_location, objects_xml_file, locations_xml_file, names_xml_file):
     production_rules = parse_production_rules(grammar_files, grammar_location)
     objects = parse_objects(objects_xml_file)
+    #kobjects = parse_kobjects(objects_xml_file)
+    #aobjects = parse_aobjects(objects_xml_file)
+    #I'm using all generic objects since it's not clear in objectsxml file which are known and which aren't
     categories = parse_categories(objects_xml_file)
     names = parse_names(names_xml_file)
     locations = parse_locations(locations_xml_file)
     rooms = parse_rooms(locations_xml_file)
+    beacons = parse_beacons(locations_xml_file)
+    placements = parse_placements(locations_xml_file)
     #add objects
     production_rules['{kobject}'] = objects
     production_rules['{aobject}'] = objects
@@ -301,12 +330,12 @@ def parse_productions_and_xml(grammar_files, grammar_location, objects_xml_file,
     production_rules['{name 1}'] = names
     production_rules['{name 2}'] = names
     #add locations
-    production_rules['{placement}'] = locations
-    production_rules['{placement 1}'] = locations
-    production_rules['{placement 2}'] = locations
-    production_rules['{beacon}'] = locations
-    production_rules['{beacon 1}'] = locations
-    production_rules['{beacon 2}'] = locations
+    production_rules['{placement}'] = placements
+    production_rules['{placement 1}'] = placements
+    production_rules['{placement 2}'] = placements
+    production_rules['{beacon}'] = beacons
+    production_rules['{beacon 1}'] = beacons
+    production_rules['{beacon 2}'] = beacons
     production_rules['{room}'] = rooms
     production_rules['{room 1}'] = rooms
     production_rules['{room 2}'] = rooms
@@ -367,7 +396,9 @@ if __name__=="__main__":
     #now start with a certain token and build out all the possibilities
     #production_rules = parse_productions_and_xml(grammar_files, grammar_location, objects_xml_file, locations_xml_file, names_xml_file)
     production_rules_highlevel = parse_production_rules(grammar_files, grammar_location)
-    print_all_highlevel_sentences("$fndobj", production_rules_highlevel, artificial_terminals)
+    print_all_highlevel_sentences("$Main", production_rules_highlevel, artificial_terminals)
+  
+    
     
 #    print("---------")
 #    sentence = "$vbfind a person in the {room} and $vbspeak $whattosay"
@@ -379,7 +410,7 @@ if __name__=="__main__":
 #        print(s)
         
     #TODO add to tree
-#    production_rules = parse_productions_and_xml(grammar_files, grammar_location, objects_xml_file, locations_xml_file, names_xml_file)
+    #production_rules = parse_productions_and_xml(grammar_files, grammar_location, objects_xml_file, locations_xml_file, names_xml_file)
 #    
 #    print("-----------")
 #    print("all full sentences")
@@ -405,6 +436,7 @@ if __name__=="__main__":
     #print("start symbol", start_symbol)
     #print("all sentences---")
     #all_sentences = generate_all_sentences(start_symbol, production_rules)
+    #print(len(all_sentences))
     #for s in all_sentences:
     #    print(s)
     #print(len(all_sentences))

@@ -1,20 +1,34 @@
-$vbfind a person in the {room} and $vbspeak $whattosay : find_person_speak(location, whattosay), location={room}, whattosay=$whattosay
-$vbfind a person in the {room} and answer a {question} : find_person_answer_question(location), location={room}
-$vbfind someone in the {room} and $vbspeak $whattosay : find_person_speak(location, whattosay), location={room}, whattosay=$whattosay
-$vbfind someone in the {room} and answer a {question} : find_person_answer_question(location), location={room}
-$vbfind {name} in the {room} and $vbspeak $whattosay : find_named_person_speak(location, name, whattosay), location={room}, name={name}, whattosay=$whattosay
-$vbfind {name} in the {room} and answer a {question} : find_named_person_answer_question(location, name), location={room}, name={name}
-$vbgopl to the {room 1}, $vbfind a person, and $vbspeak $whattosay : find_person_speak(location, whattosay), location={room 1}, whattosay=$whattosay
-$vbgopl to the {room 1}, $vbfind a person, and answer a {question} : find_person_answer_question(location), location={room 1}
-$vbgopl to the {room 1}, $vbfind someone, and $vbspeak $whattosay : find_person_speak(location, whattosay), location={room 1}, whattosay=$whattosay
-$vbgopl to the {room 1}, $vbfind someone, and answer a {question} : find_person_answer_question(location), location={room 1}
-$vbgopl to the {room 1}, $vbfind {name}, and $vbspeak $whattosay : find_named_person_speak(location, name, whattosay), location={room 1}, name={name}, whattosay=$whattosay
-$vbgopl to the {room 1}, $vbfind {name}, and answer a {question} : find_named_person_answer_question(location, name), location={room 1}, name={name}
-$vbspeak $whattosay to {name} at the {beacon 1} : find_named_person_speak(location, name, whattosay), location={beacon 1}, name={name}, whattosay=$whattosay
-Tell me the name of the person at the {beacon} : tellme_person_name(location), location={beacon} 
-Tell me the name of the person in the {room} : tellme_person_name(location), location={room}
-answer a {question} to {name} at the {beacon 1} : find_named_person_answer_question(location, name), location={beacon 1}, name={name}
+$vbfind a person in the {room} and $vbspeak $whattosay : find_person_speak(location, whattosay); location={room}; whattosay=$whattosay
+$vbfind a person in the {room} and answer a {question} : find_person_answer_question(location); location={room}
+$vbfind someone in the {room} and $vbspeak $whattosay : find_person_speak(location, whattosay); location={room}; whattosay=$whattosay
+$vbfind someone in the {room} and answer a {question} : find_person_answer_question(location); location={room}
+$vbfind {name} in the {room} and $vbspeak $whattosay : find_named_person_speak(location, name, whattosay); location={room}; name={name}; whattosay=$whattosay
+$vbfind {name} in the {room} and answer a {question} : find_named_person_answer_question(location, name); location={room}; name={name}
+$vbgopl to the {room 1}, $vbfind a person, and $vbspeak $whattosay : find_person_speak(location, whattosay); location={room 1}; whattosay=$whattosay
+$vbgopl to the {room 1}, $vbfind a person, and answer a {question} : find_person_answer_question(location); location={room 1}
+$vbgopl to the {room 1}, $vbfind someone, and $vbspeak $whattosay : find_person_speak(location, whattosay); location={room 1}; whattosay=$whattosay
+$vbgopl to the {room 1}, $vbfind someone, and answer a {question} : find_person_answer_question(location); location={room 1}
+$vbgopl to the {room 1}, $vbfind {name}, and $vbspeak $whattosay : find_named_person_speak(location, name, whattosay); location={room 1}; name={name}; whattosay=$whattosay
+$vbgopl to the {room 1}, $vbfind {name}, and answer a {question} : find_named_person_answer_question(location, name); location={room 1}; name={name}
+$vbspeak $whattosay to {name} at the {beacon 1} : find_named_person_speak(location, name, whattosay); location={beacon 1}; name={name}; whattosay=$whattosay
+Tell me the name of the person at the {beacon} : tellme_person_name(location); location={beacon} 
+Tell me the name of the person in the {room} : tellme_person_name(location); location={room}
+answer a {question} to {name} at the {beacon 1} : find_named_person_answer_question(location, name); location={beacon 1}; name={name}
 
-$vbfind the {kobject?} in the {room}: find_object(object, location), object={kobject?}, room={room}
-$vbfind the {kobject} in the {room}: find_object(object, location), object={kobject}, room={room}
-Tell me how many {kobject} there are on the {placement}: count_object(object, location), object={kobject}, location={placement}
+$vbfind the {kobject?} in the {room}: find_object(object, location); object={kobject?}; location={room}
+$vbfind the {kobject} in the {room}: find_object(object, location); object={kobject}; location={room}
+Tell me how many {kobject} there are on the {placement}: count_object(object, location); object={kobject}; location={placement}
+
+$vbbring me the {kobject} : bring_me(object); object={kobject}
+$vbbring me the {kobject} from the {placement} : bring_me_from(object,location); object={kobject}; location={placement}
+$vbbring to {name} at the {beacon 1} the {kobject} from the {placement} : deliver_to_person_from_location(object, location, name, destination); object = {kobject}; location={placement}; name={name}; destination={beacon 1}
+$vbdeliver the {kobject} to me : bring_me(object); object={kobject}
+$vbdeliver the {kobject} to {name} at the {beacon 1} : deliver_to_person(object, name, destination); object = {kobject}; name={name}; destination={beacon 1}
+$vbgopl to the {placement 1}, $vbfind the {kobject}, and $delivme : bring_me_from(object,location); object={kobject}; location={placement 1}
+$vbgopl to the {placement 1}, $vbfind the {kobject}, and $vbdeliver it to {name} at the {beacon} : deliver_to_person_from_location(object, location, name, destination); object = {kobject}; location={placement 1}; name={name}; destination={beacon} 
+$vbgopl to the {placement 1}, $vbfind the {kobject}, and $vbplace it on the {placement 2} : move_object(object,origin,destination); object={kobject}; origin={placement 1}; destination={placement 2}
+$vbplace the {kobject} on the {placement 2} : place_object(object, placement); object={kobject}; placement={placement 2}
+$vbtake the {kobject} and $vbplace it on the {placement 2} : place_object(object, placement); object={kobject}; placement={placement 2}
+$vbtake the {kobject} from the {placement 1} and $delivme : bring_me_from(object,location); object={kobject}; location={placement 1}
+$vbtake the {kobject} from the {placement 1} and $vbdeliver it to {name} at the {beacon} : deliver_to_person_from_location(object, location, name, destination); object = {kobject}; location={placement 1}; name={name}; destination={beacon} 
+$vbtake the {kobject} from the {placement 1} and $vbplace it on the {placement 2} : move_object(object,origin,destination); object={kobject}; origin={placement 1}; destination={placement 2}

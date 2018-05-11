@@ -1,0 +1,13 @@
+find_person_speak(location, whattosay) : find a person at the $location and say $whattosay
+find_person_answer_question(location) : find a person at the $location and answer a question
+find_named_person_speak(location, name, whattosay) : find $name at the $location and say $whattosay
+find_named_person_answer_question(location, name) : find $name at the $location and answer a question
+tellme_person_name(location) : tell you the name of the person at the $location
+find_object(object, location) : find the $object at the $location
+count_object(object, location) : tell you how many $object are on the $location
+bring_me(object) : bring you the $object
+bring_me_from(object,location) : bring you the $object from the $location
+deliver_to_person(object, name, destination) : give the $object to $name at the $destination
+deliver_to_person_from_location(object, location, name, destination) : bring the $object from the $location to $name at the $destination
+move_object(object,origin,destination) : move the $object from the $origin to the $destination
+place_object(object, placement) : put the $object on the $placement
